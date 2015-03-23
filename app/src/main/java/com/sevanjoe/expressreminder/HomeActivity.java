@@ -1,12 +1,13 @@
 package com.sevanjoe.expressreminder;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.sevanjoe.library.base.BaseActivity;
 
-public class HomeActivity extends ActionBarActivity {
+
+public class HomeActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -14,8 +15,13 @@ public class HomeActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_home);
 	}
 
+    @Override
+    protected void setSystemBarColor() {
+        updateSystemBarColor(R.color.colorPrimaryDark);
+    }
 
-	@Override
+
+    @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu_home, menu);

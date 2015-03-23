@@ -24,12 +24,11 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
-import com.sevanjoe.library.R;
 
 /**
  * Created by Sevan Joe on 3/23/2015.
  */
-public class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends ActionBarActivity {
 
     private SystemBarTintManager systemBarTintManager;
 
@@ -46,7 +45,7 @@ public class BaseActivity extends ActionBarActivity {
         }
         systemBarTintManager = new SystemBarTintManager(this);
         systemBarTintManager.setStatusBarTintEnabled(true);
-        systemBarTintManager.setStatusBarTintResource(R.color.primaryColorDark);
+        setSystemBarColor();
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -62,7 +61,9 @@ public class BaseActivity extends ActionBarActivity {
         window.setAttributes(layoutParams);
     }
 
-    public void updateSystemBarColor(int resId) {
+    protected abstract void setSystemBarColor();
+
+    protected void updateSystemBarColor(int resId) {
         systemBarTintManager.setStatusBarTintResource(resId);
     }
 }
