@@ -23,6 +23,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <com.sevanjoe.library.widget.ButtonRectangle
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:text="Load"/>
+
             </LinearLayout>
 
         </LinearLayout>
