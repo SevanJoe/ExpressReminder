@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.sevanjoe.expressreminder.R;
+import com.sevanjoe.expressreminder.sms.SmsHelper;
 import com.sevanjoe.library.base.BaseActivity;
 
 import butterknife.ButterKnife;
@@ -31,6 +32,9 @@ public class HomeActivity extends BaseActivity {
 
         ButterKnife.inject(this);
         initToolbar();
+
+        SmsHelper.getInstance().init(this);
+        SmsHelper.getInstance().readSms();
 	}
 
     @Override
