@@ -20,7 +20,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.sevanjoe.expressreminder.model.bean.Sms;
 import com.sevanjoe.library.utils.LogUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sevan Joe on 3/24/2015.
@@ -45,21 +49,26 @@ public class SmsHelper {
         this.context = context;
     }
 
-    public void readSms() {
+    public List<Sms> loadExpressSms() {
+        List<Sms> smsList = new ArrayList<>();
         Cursor cursor = context.getContentResolver().query(Uri.parse("content://sms/inbox"), null,
                 "address=?", new String[]{"11183"}, "date desc");
         int addressIndex = cursor.getColumnIndexOrThrow("address");
         int bodyIndex = cursor.getColumnIndexOrThrow("body");
-        if (addressIndex < 0 || bodyIndex < 0) {
-            return;
-        }
-        if (cursor.moveToFirst()) {
-            do {
-                String address = cursor.getString(addressIndex);
-                String body = cursor.getString(bodyIndex);
-                LogUtil.d(address + body);
-            } while (cursor.moveToNext());
+        if (addressIndex >= 0 && bodyIndex >= 0) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Sms sms = new Sms();
+                    String address = cursor.getString(addressIndex);
+                    String body = cursor.getString(bodyIndex);
+                    sms.setAddress(address);
+                    sms.setBody(body);
+                    smsList.add(sms);
+                } while (cursor.moveToNext());
+            }
         }
         cursor.close();
+
+        return smsList;
     }
 }

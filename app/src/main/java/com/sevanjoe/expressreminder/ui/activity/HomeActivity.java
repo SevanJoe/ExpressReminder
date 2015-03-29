@@ -9,14 +9,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.sevanjoe.expressreminder.R;
+import com.sevanjoe.expressreminder.model.bean.Sms;
+import com.sevanjoe.expressreminder.presenter.HomePresenter;
+import com.sevanjoe.expressreminder.presenter.impl.HomePresenterImpl;
 import com.sevanjoe.expressreminder.sms.SmsHelper;
+import com.sevanjoe.expressreminder.ui.view.HomeView;
 import com.sevanjoe.library.base.BaseActivity;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity implements HomeView {
 
     @InjectView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -25,16 +31,17 @@ public class HomeActivity extends BaseActivity {
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
+    private HomePresenter homePresenter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
         ButterKnife.inject(this);
-        initToolbar();
 
-        SmsHelper.getInstance().init(this);
-        SmsHelper.getInstance().readSms();
+        initToolbar();
+        initView();
 	}
 
     @Override
@@ -49,6 +56,11 @@ public class HomeActivity extends BaseActivity {
                 R.string.drawer_open, R.string.drawer_close);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
+    }
+
+    private void initView() {
+        homePresenter = new HomePresenterImpl(this);
+        homePresenter.showExpressList();
     }
 
     @Override
@@ -84,4 +96,9 @@ public class HomeActivity extends BaseActivity {
 
 		return super.onOptionsItemSelected(item);
 	}
+
+    @Override
+    public void showExpressList(List<Sms> smsList) {
+
+    }
 }
