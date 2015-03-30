@@ -21,6 +21,7 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import com.sevanjoe.expressreminder.model.bean.Sms;
+import com.sevanjoe.expressreminder.model.bean.company.CompanyHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,17 +52,20 @@ public class SmsHelper {
     public List<Sms> loadExpressSms() {
         List<Sms> smsList = new ArrayList<>();
         Cursor cursor = context.getContentResolver().query(Uri.parse("content://sms/inbox"), null,
-                "address=?", new String[]{"11183"}, "date DESC");
+                "address=?", CompanyHelper.getInstance().getCompanyNumberList(), "date DESC");
         int addressIndex = cursor.getColumnIndex("address");
         int bodyIndex = cursor.getColumnIndex("body");
-        if (addressIndex >= 0 && bodyIndex >= 0) {
+        int dateIndex = cursor.getColumnIndex("date");
+        if (addressIndex >= 0 && bodyIndex >= 0 && dateIndex >= 0) {
             if (cursor.moveToFirst()) {
                 do {
                     Sms sms = new Sms();
                     String address = cursor.getString(addressIndex);
                     String body = cursor.getString(bodyIndex);
+                    String date = cursor.getString(dateIndex);
                     sms.setAddress(address);
                     sms.setBody(body);
+                    sms.setDate(date);
                     smsList.add(sms);
                 } while (cursor.moveToNext());
             }

@@ -14,37 +14,20 @@
  * limitations under the License.
  */
 
-package com.sevanjoe.expressreminder.model.bean;
+package com.sevanjoe.expressreminder.model.bean.company;
+
+import java.util.Arrays;
 
 /**
- * Created by Sevan Joe on 2015/3/29 0029.
+ * Created by Sevan Joe on 3/30/2015.
  */
-public class Sms {
-    private String address;
-    private String body;
-    private String date;
+public class FuiouCompany extends Company {
 
-    public String getAddress() {
-        return address;
-    }
+    private static final String[] fuiouNumberList = {"1069009575028", "10657120593888"};
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public FuiouCompany() {
+        this.id = 0;
+        this.name = "富友";
+        this.numberList = Arrays.asList(fuiouNumberList);
     }
 }

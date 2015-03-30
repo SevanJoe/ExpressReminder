@@ -17,24 +17,24 @@
 package com.sevanjoe.expressreminder.model.bean.company;
 
 /**
- * Created by Sevan Joe on 3/30/2015.
+ * Created by Sevan Joe on 2015/3/30 0030.
  */
-public class FuYouCompanyFactory implements CompanyFactory {
-    private static FuYouCompanyFactory instance;
+public class SposterCompanyFactory implements CompanyFactory {
+    private static SposterCompanyFactory instance;
 
-    public static FuYouCompanyFactory getInstance() {
+    public static SposterCompanyFactory getInstance() {
         if (null == instance) {
-            instance = new FuYouCompanyFactory();
+            instance = new SposterCompanyFactory();
         }
         return instance;
     }
 
-    private FuYouCompanyFactory() {
+    private SposterCompanyFactory() {
 
     }
 
     @Override
     public Company createCompany() {
-        return new FuYouCompany();
+        return new SposterCompany();
     }
 }

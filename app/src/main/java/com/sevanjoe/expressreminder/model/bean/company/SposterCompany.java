@@ -19,15 +19,15 @@ package com.sevanjoe.expressreminder.model.bean.company;
 import java.util.Arrays;
 
 /**
- * Created by Sevan Joe on 3/30/2015.
+ * Created by Sevan Joe on 2015/3/30 0030.
  */
-public class FuYouCompany extends Company {
+public class SposterCompany extends Company {
 
-    private static final String[] fuYouNumberList = {"1069009575028"};
+    private static final String[] sposterNumberList = {"10690329010055", "10657109010055"};
 
-    public FuYouCompany() {
-        this.id = 0;
-        this.name = "富友";
-        this.numberList = Arrays.asList(fuYouNumberList);
+    public SposterCompany() {
+        this.id = 1;
+        this.name = "速递易";
+        this.numberList = Arrays.asList(sposterNumberList);
     }
 }
