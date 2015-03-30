@@ -28,7 +28,7 @@ public class CompanyHelper {
     private List<Company> companyList;
 
     public static CompanyHelper getInstance() {
-        if (null != instance) {
+        if (null == instance) {
             instance = new CompanyHelper();
         }
         return instance;
@@ -42,9 +42,10 @@ public class CompanyHelper {
 
     public String[] getCompanyNumberList() {
         List<String> companyNumberList = new ArrayList<>();
-        for (Company company : companyList) {
-            companyNumberList.addAll(company.getNumberList());
-        }
-        return companyNumberList.toArray(new String[companyNumberList.size()]);
+//        for (Company company : companyList) {
+//            companyNumberList.addAll(company.getNumberList());
+//        }
+        companyNumberList.add(companyList.get(0).getNumberList().get(0));
+        return companyNumberList.toArray(new String[1]);
     }
 }
