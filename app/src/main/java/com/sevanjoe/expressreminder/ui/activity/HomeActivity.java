@@ -12,7 +12,6 @@ import com.sevanjoe.expressreminder.R;
 import com.sevanjoe.expressreminder.model.bean.Sms;
 import com.sevanjoe.expressreminder.presenter.HomePresenter;
 import com.sevanjoe.expressreminder.presenter.impl.HomePresenterImpl;
-import com.sevanjoe.expressreminder.sms.SmsHelper;
 import com.sevanjoe.expressreminder.ui.view.HomeView;
 import com.sevanjoe.library.base.BaseActivity;
 
